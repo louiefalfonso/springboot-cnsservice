@@ -10,4 +10,6 @@ public class CnsserviceApplication {
 		SpringApplication.run(CnsserviceApplication.class, args);
 	}
 
+
+
 }
