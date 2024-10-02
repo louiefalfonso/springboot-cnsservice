@@ -18,4 +18,20 @@ public class AmenityDto {
     private String description;
 
     private String status;
+
+    public String getAmenityName() {
+        return amenityName;
+    }
+
+    public String getAmenityPrice() {
+        return amenityPrice;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 }
