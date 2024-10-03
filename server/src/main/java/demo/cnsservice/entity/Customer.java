@@ -3,7 +3,6 @@ package demo.cnsservice.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

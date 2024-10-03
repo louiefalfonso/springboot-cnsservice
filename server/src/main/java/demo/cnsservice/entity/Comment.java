@@ -1,4 +1,4 @@
 package demo.cnsservice.entity;
 
-public class Comments {
+public class Comment {
 }
