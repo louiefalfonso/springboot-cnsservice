@@ -43,4 +43,30 @@ public class AmenityServiceImpl implements AmenityService {
         return  modelMapper.map(amenity, AmenityDto.class);
     }
 
+
+    // REST API - Update Amenity
+    @Override
+    public AmenityDto updateAmenity(Long amenityId, AmenityDto updateAmenity) {
+        Amenity amenity = amenityRepository.findAllById(amenityId)
+                .orElseThrow(()-> new RuntimeException("Amenity doesn't exist with a given Id:" + amenityId));
+
+        amenity.setAmenityName(updateAmenity.getAmenityName());
+        amenity.setAmenityPrice(updateAmenity.getAmenityPrice());
+        amenity.setDescription(updateAmenity.getDescription());
+        amenity.setStatus(updateAmenity.getStatus());
+
+        Amenity updateAmenityObj = amenityRepository.save(amenity);
+        return modelMapper.map(updateAmenityObj, AmenityDto.class);
+    }
+
+
+    // REST API - Delete Amenity
+    @Override
+    public void deleteAmenity(Long amenityId) {
+        Amenity amenity = amenityRepository.findAllById(amenityId)
+                .orElseThrow(()-> new RuntimeException("Amenity doesn't exist with given id:" + amenityId));
+        amenityRepository.deleteById(amenityId);
+    }
+
+
 }

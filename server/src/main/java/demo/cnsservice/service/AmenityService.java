@@ -12,11 +12,8 @@ public interface AmenityService {
 
     AmenityDto getAmenityById(Long amenityId);
 
-    /*
+    AmenityDto updateAmenity(Long amenityId, AmenityDto updateAmenity);
 
+    void deleteAmenity(Long amenityId);
 
-    CustomerDto updateCustomer(Long customerId, CustomerDto updateCustomer);
-
-    void deleteCustomer(Long customerId)
-     */
 }

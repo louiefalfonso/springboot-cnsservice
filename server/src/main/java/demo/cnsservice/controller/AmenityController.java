@@ -1,6 +1,5 @@
 package demo.cnsservice.controller;
 
-
 import demo.cnsservice.dto.AmenityDto;
 import demo.cnsservice.entity.Amenity;
 import demo.cnsservice.repository.AmenityRepository;
@@ -47,5 +46,27 @@ public class AmenityController {
         return ResponseEntity.ok(amenity);
     }
 
+    //UPDATE Amenity REST API
+    @PutMapping("{id}")
+    public ResponseEntity<Amenity> updateAmenity(@PathVariable("id") long id,
+                                                  @RequestBody Amenity amenityDetails){
+        Amenity updateAmenity = amenityRepository.findAllById(id)
+                .orElseThrow(()-> new RuntimeException("Amenity does not exist with id: " + id));
+
+        updateAmenity.setAmenityName(amenityDetails.getAmenityName());
+        updateAmenity.setAmenityPrice(amenityDetails.getAmenityPrice());
+        updateAmenity.setDescription(amenityDetails.getDescription());
+        updateAmenity.setStatus(amenityDetails.getStatus());
+
+        amenityRepository.save(updateAmenity);
+        return ResponseEntity.ok(updateAmenity);
+    }
+
+    //DELETE Amenity REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteAmenity(@PathVariable("id") Long amenityId){
+        amenityService.deleteAmenity(amenityId);
+        return ResponseEntity.ok("Amenity Deleted Successfully");
+    }
 
 }

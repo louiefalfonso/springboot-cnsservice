@@ -47,7 +47,7 @@ public class CustomerController {
 
     //UPDATE Customer REST API
     @PutMapping("{id}")
-    public ResponseEntity<Customer> updateCustomer (@PathVariable ("id") long id,
+    public ResponseEntity<Customer> updateCustomer(@PathVariable ("id") long id,
                                                     @RequestBody Customer customerDetails){
         Customer updateCustomer = customerRepository.findAllById(id)
                 .orElseThrow(()-> new RuntimeException("Customer does not exist with id: " + id));
