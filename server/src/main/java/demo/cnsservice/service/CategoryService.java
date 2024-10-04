@@ -10,11 +10,12 @@ public interface CategoryService {
 
     List<CategoryDto> getAllCategories();
 
+    CategoryDto getCategoryById(Long categoryId);
+
+    CategoryDto updateCategory(Long categoryId, CategoryDto updateCategory);
+
     /*
 
-    CustomerDto getCustomerById (Long customerId);
-
-    CustomerDto updateCustomer(Long customerId, CustomerDto updateCustomer);
 
     void deleteCustomer(Long customerId);
      */
