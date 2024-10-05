@@ -62,7 +62,6 @@ public class CustomerController {
 
     }
 
-
     //DELETE Customer REST API
     @DeleteMapping("{id}")
     public  ResponseEntity<String> deleteCustomer( @PathVariable("id") Long customerId){

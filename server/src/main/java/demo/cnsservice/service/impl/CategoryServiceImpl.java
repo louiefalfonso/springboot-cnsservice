@@ -34,7 +34,6 @@ public class CategoryServiceImpl implements CategoryService {
                 .collect(Collectors.toList());
     }
 
-
     // REST API - Get Category By Id
     @Override
     public CategoryDto getCategoryById(Long categoryId) {
@@ -43,10 +42,26 @@ public class CategoryServiceImpl implements CategoryService {
         return modelMapper.map(category, CategoryDto.class);
     }
 
+    // REST API - Update Category
     @Override
     public CategoryDto updateCategory(Long categoryId, CategoryDto updateCategory) {
-        return null;
+        Category category = categoryRepository.findAllById(categoryId)
+                .orElseThrow(()-> new RuntimeException("Category doesn't exist with a given Id:" + categoryId));
+
+        category.setName(updateCategory.getName());
+        category.setDescription(updateCategory.getDescription());
+
+        Category updateCategoryObj = categoryRepository.save(category);
+        return modelMapper.map(updateCategoryObj, CategoryDto.class);
     }
 
+    // REST API - Delete Category
+    @Override
+    public void deleteCategory(Long categoryId) {
+        Category category = categoryRepository.findAllById(categoryId)
+                .orElseThrow(()-> new RuntimeException("Category doesn't exist with given id:" + categoryId));
+        categoryRepository.deleteById(categoryId);
+
+    }
 
 }
