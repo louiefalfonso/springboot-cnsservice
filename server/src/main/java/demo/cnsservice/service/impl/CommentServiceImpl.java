@@ -1,6 +1,8 @@
 package demo.cnsservice.service.impl;
 
 import demo.cnsservice.dto.CommentDto;
+import demo.cnsservice.entity.Booking;
+import demo.cnsservice.entity.Comment;
 import demo.cnsservice.repository.BookingRepository;
 import demo.cnsservice.repository.CommentRepository;
 import demo.cnsservice.service.CommentService;
@@ -23,7 +25,23 @@ public class CommentServiceImpl implements CommentService {
 
 
     @Override
-    public CommentDto createComment(long bookingI, CommentDto commentDto) {
-        return null;
+    public CommentDto createComment(long bookingId, CommentDto commentDto) {
+
+
+        /*
+           Comment comment = mapToEntity(commentDto);
+
+        // retrieve post entity by id
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new ResourceNotFoundException("Post", "id", postId));
+
+        // set post to comment entity
+        comment.setPost(post);
+
+        // comment entity to DB
+        Comment newComment =  commentRepository.save(comment);
+
+        return mapToDTO(newComment);
+         */
     }
 }

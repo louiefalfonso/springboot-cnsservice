@@ -3,10 +3,10 @@ package demo.cnsservice.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+
 
 @Data
 @AllArgsConstructor
