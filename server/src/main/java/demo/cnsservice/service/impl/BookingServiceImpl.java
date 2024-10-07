@@ -26,30 +26,5 @@ public class BookingServiceImpl implements BookingService {
         this.categoryRepository = categoryRepository;
     }
 
-    @Override
-    public BookingDto createBooking(BookingDto bookingDto) {
 
-        Category category = categoryRepository.findById(bookingDto.getCategoryId())
-                .orElseThrow(()-> new ResourceNotFoundException("Category", "id", bookingDto.getCategoryId()));
-
-
-    }
-
-    /*
-     @Override
-    public PostDto createPost(PostDto postDto) {
-
-        Category category = categoryRepository.findById(postDto.getCategoryId())
-                .orElseThrow(() -> new ResourceNotFoundException("Category", "id", postDto.getCategoryId()));
-
-        // convert DTO to entity
-        Post post = mapToEntity(postDto);
-        post.setCategory(category);
-        Post newPost = postRepository.save(post);
-
-        // convert entity to DTO
-        PostDto postResponse = mapToDTO(newPost);
-        return postResponse;
-    }
-     */
 }

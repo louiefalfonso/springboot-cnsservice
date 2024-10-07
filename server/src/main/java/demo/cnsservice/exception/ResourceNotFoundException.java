@@ -24,4 +24,7 @@ public class ResourceNotFoundException extends  RuntimeException{
         this.fieldName = msg;
 
     }
+
+    public ResourceNotFoundException(String category, String id, Long categoryId) {
+    }
 }
