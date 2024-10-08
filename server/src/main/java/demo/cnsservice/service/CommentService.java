@@ -4,6 +4,6 @@ import demo.cnsservice.dto.CommentDto;
 
 public interface CommentService {
 
-    CommentDto createComment(long bookingId, CommentDto commentDto);
+    CommentDto createComment(CommentDto commentDto);
 
 }

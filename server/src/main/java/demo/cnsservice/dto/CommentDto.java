@@ -15,7 +15,7 @@ public class CommentDto {
 
     private String email;
 
-    private String body;
+    private String comment;
 
     public String getName() {
         return name;
@@ -25,7 +25,7 @@ public class CommentDto {
         return email;
     }
 
-    public String getBody() {
-        return body;
+    public String getComment() {
+        return comment;
     }
 }
