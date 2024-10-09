@@ -27,4 +27,8 @@ public class BookingServiceImpl implements BookingService {
     }
 
 
+    @Override
+    public BookingDto createBooking(BookingDto bookingDto) {
+        return null;
+    }
 }

@@ -17,8 +17,12 @@ public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
     private ModelMapper modelMapper;
 
+    // REST API - Create New Comment
     @Override
     public CommentDto createComment(CommentDto commentDto) {
-        return null;
+        Comment comment = modelMapper.map(commentDto, Comment.class);
+        Comment savedComment = commentRepository.save(comment);
+        return  modelMapper.map(savedComment, CommentDto.class);
     }
+
 }
