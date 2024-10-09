@@ -34,4 +34,12 @@ public class BookingServiceImpl implements BookingService {
                .collect(Collectors.toList());
     }
 
+    // REST API - Get Booking By Id
+    @Override
+    public BookingDto getBookingById(Long bookingId) {
+        Booking booking = bookingRepository.findAllById(bookingId)
+                .orElseThrow(()-> new RuntimeException("Booking doesn't exist with a given Id:" + bookingId));
+        return modelMapper.map(booking, BookingDto.class);
+    }
+
 }

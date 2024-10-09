@@ -1,6 +1,7 @@
 package demo.cnsservice.controller;
 
 import demo.cnsservice.dto.BookingDto;
+import demo.cnsservice.entity.Booking;
 import demo.cnsservice.repository.BookingRepository;
 import demo.cnsservice.service.BookingService;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,6 @@ public class BookingController {
     private BookingRepository bookingRepository;
     private BookingService bookingService;
 
-
     //POST New Booking REST API
     @PostMapping
     public ResponseEntity<BookingDto> createBooking(@RequestBody BookingDto bookingDto){
@@ -36,4 +36,11 @@ public class BookingController {
         return ResponseEntity.ok(booking);
     }
 
+    //GET Booking By ID REST API
+    @GetMapping("{id}")
+    public ResponseEntity<Booking> getBookingById(@PathVariable("id") long id){
+        Booking booking = bookingRepository.findAllById(id)
+                .orElseThrow(()-> new RuntimeException("Booking does not exist with Id:" + id));
+        return ResponseEntity.ok(booking);
+    }
 }
