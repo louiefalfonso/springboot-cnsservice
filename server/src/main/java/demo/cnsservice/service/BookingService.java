@@ -12,4 +12,7 @@ public interface BookingService {
 
     BookingDto getBookingById (Long bookingId);
 
+    BookingDto updateBooking(Long bookingId, BookingDto updateBooking);
+
+
 }

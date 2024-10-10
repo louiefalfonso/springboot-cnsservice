@@ -42,4 +42,21 @@ public class BookingServiceImpl implements BookingService {
         return modelMapper.map(booking, BookingDto.class);
     }
 
+
+    // REST API - Update Booking
+    @Override
+    public BookingDto updateBooking(Long bookingId, BookingDto updateBooking) {
+        Booking booking = bookingRepository.findAllById(bookingId)
+                .orElseThrow(()-> new RuntimeException("Booking doesn't exist with a given Id:" + bookingId));
+
+        booking.setBookingName(updateBooking.getBookingName());
+        booking.setBookingDate(updateBooking.getBookingDate());
+        booking.setPrice(updateBooking.getPrice());
+        booking.setStatus(updateBooking.getStatus());
+
+        Booking updateBookingObj = bookingRepository.save(booking);
+        return modelMapper.map(updateBookingObj, BookingDto.class);
+    }
+
+
 }
