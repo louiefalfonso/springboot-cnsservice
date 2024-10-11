@@ -30,4 +30,27 @@ public class BookingDto {
 
     private Set<CommentDto> comments;
 
+    public void setBookingName(String bookingName) {
+        this.bookingName = bookingName;
+    }
+
+    public void setBookingDate(LocalDate bookingDate) {
+        this.bookingDate = bookingDate;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
 }

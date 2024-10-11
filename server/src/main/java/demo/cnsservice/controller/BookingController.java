@@ -43,4 +43,22 @@ public class BookingController {
                 .orElseThrow(()-> new RuntimeException("Booking does not exist with Id:" + id));
         return ResponseEntity.ok(booking);
     }
+
+    @PutMapping ("{id}")
+    public ResponseEntity<Booking> updateBooking(@PathVariable("id") long id,
+                                                 @RequestBody Booking bookingDetails){
+        Booking updateBooking = bookingRepository.findAllById(id)
+                .orElseThrow(()->new RuntimeException("Booking does not exist with id: " + id));
+
+        updateBooking.setBookingName(bookingDetails.getBookingName());
+
+
+        bookingRepository.save(updateBooking);
+
+        return ResponseEntity.ok(updateBooking);
+    }
+
+
+
+
 }

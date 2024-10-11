@@ -53,7 +53,7 @@ public class CustomerController {
                 .orElseThrow(()-> new RuntimeException("Customer does not exist with id: " + id));
 
         updateCustomer.setFirstName(customerDetails.getFirstName());
-        updateCustomer.setLastName(customerDetails.getFirstName());
+        updateCustomer.setLastName(customerDetails.getLastName());
         updateCustomer.setEmail(customerDetails.getEmail());
         updateCustomer.setPhoneNumber(customerDetails.getPhoneNumber());
 

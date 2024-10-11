@@ -3,6 +3,7 @@ package demo.cnsservice.service.impl;
 import demo.cnsservice.dto.BookingDto;
 import demo.cnsservice.entity.Booking;
 import demo.cnsservice.repository.BookingRepository;
+import demo.cnsservice.repository.CategoryRepository;
 import demo.cnsservice.service.BookingService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class BookingServiceImpl implements BookingService {
 
     private BookingRepository bookingRepository;
+    private CategoryRepository categoryRepository;
     private ModelMapper modelMapper;
 
     // REST API - Create New Booking
@@ -53,6 +55,8 @@ public class BookingServiceImpl implements BookingService {
         booking.setBookingDate(updateBooking.getBookingDate());
         booking.setPrice(updateBooking.getPrice());
         booking.setStatus(updateBooking.getStatus());
+        booking.setDescription(updateBooking.getDescription());
+        booking.setCategory(modelMapper.map(updateBooking.getCategoryId(), Booking.class).getCategory());
 
         Booking updateBookingObj = bookingRepository.save(booking);
         return modelMapper.map(updateBookingObj, BookingDto.class);
