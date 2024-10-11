@@ -44,6 +44,8 @@ public class BookingController {
         return ResponseEntity.ok(booking);
     }
 
+
+    //UPDATE Booking REST API
     @PutMapping ("{id}")
     public ResponseEntity<Booking> updateBooking(@PathVariable("id") long id,
                                                  @RequestBody Booking bookingDetails){
@@ -51,14 +53,21 @@ public class BookingController {
                 .orElseThrow(()->new RuntimeException("Booking does not exist with id: " + id));
 
         updateBooking.setBookingName(bookingDetails.getBookingName());
-
+        updateBooking.setBookingDate(bookingDetails.getBookingDate());
+        updateBooking.setPrice(bookingDetails.getPrice());
+        updateBooking.setStatus(bookingDetails.getStatus());
+        updateBooking.setDescription(bookingDetails.getDescription());
+        updateBooking.setCategory(bookingDetails.getCategory());
 
         bookingRepository.save(updateBooking);
-
         return ResponseEntity.ok(updateBooking);
     }
 
-
-
+    //DELETE Booking REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteBooking(@PathVariable("id") Long bookingId){
+        bookingService.deleteBooking(bookingId);
+        return ResponseEntity.ok("Booking Deleted Successfully");
+    }
 
 }

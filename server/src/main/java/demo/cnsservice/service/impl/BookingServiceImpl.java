@@ -63,4 +63,14 @@ public class BookingServiceImpl implements BookingService {
     }
 
 
+    // REST API - Delete Booking
+    @Override
+    public void deleteBooking(Long bookingId) {
+        bookingRepository.findAllById(bookingId)
+                .orElseThrow(()-> new RuntimeException("Booking doesn't exist with given id:" + bookingId));
+        bookingRepository.deleteById(bookingId);
+
+    }
+
+
 }
