@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/v1/comments")
+@RequestMapping("/api/v1")
 public class CommentController {
 
     @Autowired

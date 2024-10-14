@@ -11,6 +11,9 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class CommentServiceImpl implements CommentService {
@@ -22,6 +25,7 @@ public class CommentServiceImpl implements CommentService {
     // REST API - Create New Comment
     @Override
     public CommentDto createComment(long bookingId, CommentDto commentDto) {
+
         Comment comment = modelMapper.map(commentDto, Comment.class);
 
         Booking booking = bookingRepository.findById(bookingId)
@@ -33,5 +37,19 @@ public class CommentServiceImpl implements CommentService {
 
     }
 
+    // REST API - Get Comments By Booking Id
+    @Override
+    public List<CommentDto> getCommentsByBookingId(long bookingId) {
+        List<Comment> comments = commentRepository.findByBookingId(bookingId);
+        return comments.stream().map((comment)-> modelMapper.map(comment, CommentDto.class))
+                .collect(Collectors.toList());
+    }
+
+   /*
+    @Override
+    public CommentDto getCommentById(Long bookingId, Long commentId) {
+        return null;
+    }
+    */
 
 }
