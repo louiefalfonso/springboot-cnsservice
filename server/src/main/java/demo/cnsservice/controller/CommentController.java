@@ -21,9 +21,10 @@ public class CommentController {
     private CommentService commentService;
 
     //POST New Comment REST API
-    @PostMapping
-    public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentDto){
-        CommentDto savedComment = commentService.createComment(commentDto);
+    @PostMapping("/bookings/{bookingId}/comments")
+    public ResponseEntity<CommentDto> createComment(@PathVariable(value = "bookingId")long bookingId,
+                                                    @RequestBody CommentDto commentDto){
+        CommentDto savedComment = commentService.createComment(bookingId,commentDto);
         return new ResponseEntity<>(savedComment, HttpStatus.CREATED);
     }
 
