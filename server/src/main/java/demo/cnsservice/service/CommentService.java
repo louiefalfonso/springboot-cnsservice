@@ -10,6 +10,6 @@ public interface CommentService {
 
     List<CommentDto> getCommentsByBookingId (long bookingId);
 
-    //CommentDto getCommentById(Long bookingId, Long commentId);
+    CommentDto getCommentById(long bookingId, long commentId);
 
 }

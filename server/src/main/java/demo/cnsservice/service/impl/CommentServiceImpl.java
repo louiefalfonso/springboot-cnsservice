@@ -9,6 +9,7 @@ import demo.cnsservice.repository.CommentRepository;
 import demo.cnsservice.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.rsocket.server.RSocketServerException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,11 +46,22 @@ public class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
     }
 
-   /*
+
+    // REST API - Get Comment By Id
     @Override
-    public CommentDto getCommentById(Long bookingId, Long commentId) {
-        return null;
+    public CommentDto getCommentById(long bookingId, long commentId) {
+
+        Booking booking = bookingRepository.findAllById(bookingId)
+                .orElseThrow(()-> new ResourceNotFoundException("Booking", "id", bookingId));
+
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(()-> new ResourceNotFoundException("Comment", "id", commentId));
+
+        return modelMapper.map(comment, CommentDto.class);
     }
-    */
+
+
+
+
 
 }
