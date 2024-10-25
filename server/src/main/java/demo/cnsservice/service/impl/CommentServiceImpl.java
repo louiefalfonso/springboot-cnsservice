@@ -9,7 +9,6 @@ import demo.cnsservice.repository.CommentRepository;
 import demo.cnsservice.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.rsocket.server.RSocketServerException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +27,6 @@ public class CommentServiceImpl implements CommentService {
     public CommentDto createComment(long bookingId, CommentDto commentDto) {
 
         Comment comment = modelMapper.map(commentDto, Comment.class);
-
         Booking booking = bookingRepository.findById(bookingId)
                 .orElseThrow(()->new ResourceNotFoundException("Booking", "id", bookingId));
 
@@ -59,9 +57,5 @@ public class CommentServiceImpl implements CommentService {
 
         return modelMapper.map(comment, CommentDto.class);
     }
-
-
-
-
 
 }
