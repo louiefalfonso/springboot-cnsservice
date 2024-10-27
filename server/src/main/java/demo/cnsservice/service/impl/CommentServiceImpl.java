@@ -58,4 +58,25 @@ public class CommentServiceImpl implements CommentService {
         return modelMapper.map(comment, CommentDto.class);
     }
 
+
+    // REST API - Delete Comment
+    @Override
+    public void deleteComment(Long bookingId, Long commentId) {
+
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(()-> new ResourceNotFoundException("Booking", "id", bookingId));
+
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(()-> new ResourceNotFoundException("Comment", "id", commentId));
+
+        /*
+        if(!comment.getPost().getId().equals(post.getId())){
+            throw new BlogAPIException(HttpStatus.BAD_REQUEST, "Comment does not belongs to post");
+        }
+         */
+
+        commentRepository.deleteById(commentId);
+
+    }
+
 }

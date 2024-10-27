@@ -12,4 +12,6 @@ public interface CommentService {
 
     CommentDto getCommentById(long bookingId, long commentId);
 
+    void deleteComment(Long bookingId, Long commentId);
+
 }
