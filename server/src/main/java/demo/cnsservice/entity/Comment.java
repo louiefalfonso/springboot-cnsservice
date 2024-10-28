@@ -24,8 +24,8 @@ public class Comment {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "comment")
-    private String comment;
+    @Column(name = "body")
+    private String body;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "booking_id", nullable = false)

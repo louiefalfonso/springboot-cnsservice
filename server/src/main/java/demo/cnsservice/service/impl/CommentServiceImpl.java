@@ -3,12 +3,14 @@ package demo.cnsservice.service.impl;
 import demo.cnsservice.dto.CommentDto;
 import demo.cnsservice.entity.Booking;
 import demo.cnsservice.entity.Comment;
+import demo.cnsservice.exception.BookingAPIException;
 import demo.cnsservice.exception.ResourceNotFoundException;
 import demo.cnsservice.repository.BookingRepository;
 import demo.cnsservice.repository.CommentRepository;
 import demo.cnsservice.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,6 +57,10 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(()-> new ResourceNotFoundException("Comment", "id", commentId));
 
+        if(!comment.getBooking().getId().equals(booking.getId())){
+            throw new BookingAPIException(HttpStatus.BAD_REQUEST,"Comment does not belongs to post");
+        }
+
         return modelMapper.map(comment, CommentDto.class);
     }
 
@@ -69,14 +75,33 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(()-> new ResourceNotFoundException("Comment", "id", commentId));
 
-        /*
-        if(!comment.getPost().getId().equals(post.getId())){
-            throw new BlogAPIException(HttpStatus.BAD_REQUEST, "Comment does not belongs to post");
+        if(!comment.getBooking().getId().equals(booking.getId())){
+            throw new BookingAPIException(HttpStatus.BAD_REQUEST,"Comment does not belongs to post");
         }
-         */
 
         commentRepository.deleteById(commentId);
 
+    }
+
+    @Override
+    public CommentDto updateComment(Long bookingId, Long commentId, CommentDto commentRequest) {
+
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(()-> new ResourceNotFoundException("Booking", "id", bookingId));
+
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(()-> new ResourceNotFoundException("Comment", "id", commentId));
+
+        if(!comment.getBooking().getId().equals(booking.getId())){
+            throw new BookingAPIException(HttpStatus.BAD_REQUEST,"Comment does not belongs to post");
+        }
+
+        comment.setName(commentRequest.getName());
+        comment.setEmail(commentRequest.getEmail());
+        comment.setBody(commentRequest.getBody());
+
+        Comment updateCommentObj = commentRepository.save(comment);
+        return  modelMapper.map(updateCommentObj, CommentDto.class);
     }
 
 }
