@@ -34,4 +34,31 @@ public class CommentController {
     public List<CommentDto> getCommentsByBookingId(@PathVariable(value = "bookingId") Long bookingId){
         return commentService.getCommentsByBookingId(bookingId);
     }
+
+
+    //GET Comment By Id REST API
+    @GetMapping("/booking/{bookingId}/comments/{id}")
+    public ResponseEntity<CommentDto> getCommentById(@PathVariable(value = "bookingId") Long bookingId,
+                                                     @PathVariable(value = "id") Long commentId){
+        CommentDto commentDto = commentService.getCommentById(bookingId, commentId);
+        return new ResponseEntity<>(commentDto, HttpStatus.OK);
+    }
+
+    //UPDATE Comment REST API
+    @PutMapping("/booking/{bookingId}/comments/{id}")
+    public ResponseEntity<CommentDto> updateComment(@PathVariable(value = "bookingId") Long bookingId,
+                                                    @PathVariable(value = "id") Long commentId,
+                                                    @RequestBody CommentDto commentDto){
+        CommentDto updateComment = commentService.updateComment(bookingId, commentId, commentDto);
+        return new ResponseEntity<>(updateComment, HttpStatus.OK);
+
+    }
+
+    //DELETE Comment REST API
+    @DeleteMapping("/booking/{bookingId}/comments/{id}")
+    public ResponseEntity<String> deleteComment(@PathVariable(value = "bookingId") Long bookingId,
+                                                @PathVariable(value = "id") Long commentId){
+        commentService.deleteComment(bookingId, commentId);
+        return new ResponseEntity<>("Comment deleted successfully", HttpStatus.OK);
+    }
 }
