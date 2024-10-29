@@ -83,6 +83,7 @@ public class CommentServiceImpl implements CommentService {
 
     }
 
+    // REST API - Update Comment
     @Override
     public CommentDto updateComment(Long bookingId, Long commentId, CommentDto commentRequest) {
 

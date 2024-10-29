@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
@@ -27,4 +29,9 @@ public class CommentController {
         return new ResponseEntity<>(savedComment, HttpStatus.CREATED);
     }
 
+    //GET All Comments By Booking Id REST API
+    @GetMapping("/bookings/{bookingId}/comments")
+    public List<CommentDto> getCommentsByBookingId(@PathVariable(value = "bookingId") Long bookingId){
+        return commentService.getCommentsByBookingId(bookingId);
+    }
 }
