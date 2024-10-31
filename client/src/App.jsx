@@ -1,14 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { Route, Routes, Navigate } from "react-router-dom";
+import ProtectedRoute from "./services/ProtectedRoute"
 function App() {
-  const [count, setCount] = useState(0)
+ 
+  const token = localStorage.getItem("token"); 
 
   return (
+
     <>
-      App JSX
+      <main className="w-full min-h-screen bg-[#f3f4f6] ">
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
+
+          
+        </Routes>  
+      </main>
     </>
   )
 }
