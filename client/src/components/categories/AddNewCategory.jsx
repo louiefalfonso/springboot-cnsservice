@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import moment from "moment";
-import CategoriesService from "../../services/CategoriesService";
+import CategoryService from "../../services/CategoryService";
 
-const AddNewCategories = () => {
+const AddNewCategory = () => {
 
   const navigate = useNavigate();
   const params = useParams();
@@ -29,7 +28,7 @@ const AddNewCategories = () => {
        description,
      };
 
-     CategoriesService.addNewCategory(newCategory)
+     CategoryService.addNewCategory(newCategory)
        .then(() => {
          navigate("/categories");
          toast.success("New Category added successfully!");
@@ -101,4 +100,4 @@ const AddNewCategories = () => {
   );
 };
 
-export default AddNewCategories;
+export default AddNewCategory;

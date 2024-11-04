@@ -3,7 +3,7 @@ import Modal from "../layout/Modal";
 import { createPortal } from "react-dom";
 import { Toaster } from "react-hot-toast";
 import CategoryService from "../services/CategoryService";
-import AddNewCategories from "./AddNewCategories";
+import AddNewCategories from "./AddNewCategory";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
