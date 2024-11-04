@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Modal from "../layout/Modal";
 import { createPortal } from "react-dom";
 import { Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
 import CategoryService from "../services/CategoryService";
+import AddNewCategories from "./AddNewCategories";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -46,11 +46,37 @@ const Categories = () => {
                     <th></th>
                   </tr>
                 </thead>
+                <tbody className="text-center">
+                  {categories.map((category, index) => (
+                    <tr
+                      key={category._id || index}
+                      className="ltr:text-left rtl:text-right"
+                    >
+                      <td>{category.id}</td>
+                      <td>{category.name}</td>
+                      <td>{category.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+      {isModalOpen &&
+        createPortal(
+          <Modal
+            isOpen={isModalOpen}
+            toggleModal={toggleModal}
+            title="Create New Category"
+            divClass="flex items-start justify-center min-h-screen px-4"
+            content={<AddNewCategories toggleModal={toggleModal} />}
+            sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
+            spaceClass="p-5 space-y-4"
+          />,
+          document.body
+        )}
+      <Toaster duration={12000} />
     </>
   );
 };
