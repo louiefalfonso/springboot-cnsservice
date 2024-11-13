@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { Toaster } from "react-hot-toast";
 import CategoryService from "../services/CategoryService";
 import AddNewCategories from "./AddNewCategory";
+import UpdateCategory from "./UpdateCategory";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -76,6 +77,20 @@ const Categories = () => {
           />,
           document.body
         )}
+      {isModalOpen &&
+        createPortal(
+          <Modal
+            isOpen={isModalOpen}
+            toggleModal={toggleModal}
+            title="UpdateCategory"
+            divClass="flex items-start justify-center min-h-screen px-4"
+            content={<UpdateCategory toggleModal={toggleModal} />}
+            sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
+            spaceClass="p-5 space-y-4"
+          />,
+          document.body
+        )}
+
       <Toaster duration={12000} />
     </>
   );
