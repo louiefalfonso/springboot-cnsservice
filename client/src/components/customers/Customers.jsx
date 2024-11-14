@@ -57,7 +57,7 @@ const Customers = () => {
                       <td>{customer.lastName}</td>
                       <td>{customer.email}</td>
                       <td>{customer.phone}</td>
-                      
+ 
                     </tr>
                   ))}
                 </tbody>
