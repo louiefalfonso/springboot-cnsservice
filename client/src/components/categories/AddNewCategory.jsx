@@ -22,6 +22,7 @@ const AddNewCategory = () => {
 
    const handleSubmit = async (e) => {
      e.preventDefault();
+     e.stopPropagation();
 
      const newCategory = {
        categoryName,
@@ -37,6 +38,26 @@ const AddNewCategory = () => {
          setError(error.response.data.message);
        });
    };
+
+   useEffect(() => {
+     if (id) {
+       const fetchNewCategory = async () => {
+         try {
+           const response = await CategoryService.getCategoryById(id);
+           const newCategory = response.data;
+
+           setCategoryName(newCategory.categoryName);
+           setDescription(newCategory.description);
+           
+         } catch (error) {
+           setError(error.message);
+           console.error(error);
+         }
+       };
+
+       fetchNewCategory();
+     }
+   }, [id]);
 
   
   return (

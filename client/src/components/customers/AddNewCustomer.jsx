@@ -8,7 +8,6 @@ const AddNewCustomer = () => {
    const params = useParams();
    const { id } = params;
 
-   const [customerId, setCustomerId] = useState("");
    const [firstName, setFirstName] = useState("");
    const [lastName, setLastName] = useState("");
    const [email, setEmail] = useState("");
@@ -23,6 +22,7 @@ const AddNewCustomer = () => {
 
    const handleSubmit = async (e) => {
      e.preventDefault();
+     e.stopPropagation();
  
      const newCustomer = {
        firstName,

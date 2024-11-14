@@ -8,7 +8,6 @@ const UpdateCategory = () => {
       const params = useParams();
       const { id } = params;
 
-      const [categoryId, setCategoryId] = useState("");
       const [categoryName, setCategoryName] = useState("");
       const [description, setDescription] = useState("");
 
@@ -31,7 +30,7 @@ const UpdateCategory = () => {
          CategoryService.updateCurrentCategory(currentCategory, id)
            .then(() => {
              navigate("/categories");
-             toast.success("Udpate Category Complete!");
+             toast.success("Update Category Complete!");
              setIsModalOpen(false);
              window.location.reload();
            })
