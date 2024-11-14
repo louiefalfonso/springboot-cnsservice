@@ -5,14 +5,19 @@ import { Toaster } from "react-hot-toast";
 import CategoryService from "../services/CategoryService";
 import AddNewCategories from "./AddNewCategory";
 import UpdateCategory from "./UpdateCategory";
+import DeleteCategory from "./DeleteCategory";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState(null);
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+
+  const toggleModal = () => { setIsModalOpen(!isModalOpen); };
+  const toggleDeleteModal = () => { setIsDeleteModalOpen(!isDeleteModalOpen);};
+  const toggleUpdateModal = () => { setIsUpdateModalOpen(!isUpdateModalOpen);};
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -21,7 +26,7 @@ const Categories = () => {
     };
     fetchCategories();
   }, []);
-
+  
   return (
     <>
       <div className="flex flex-col gap-4 min-h-[calc(100vh-212px)]">
@@ -56,6 +61,15 @@ const Categories = () => {
                       <td>{category.id}</td>
                       <td>{category.name}</td>
                       <td>{category.description}</td>
+                      <td>
+                        <button
+                          type="button"
+                          onClick={toggleDeleteModal}
+                          className="btn py-1 px-3.5 text-xs bg-danger border border-danger border-danger rounded-md text-white transition-all duration-300 hover:bg-danger/[0.85] hover:border-danger/[0.85]"
+                        >
+                          Delete
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -77,20 +91,32 @@ const Categories = () => {
           />,
           document.body
         )}
-      {isModalOpen &&
+      {isDeleteModalOpen &&
         createPortal(
           <Modal
-            isOpen={isModalOpen}
-            toggleModal={toggleModal}
-            title="UpdateCategory"
-            divClass="flex items-start justify-center min-h-screen px-4"
-            content={<UpdateCategory toggleModal={toggleModal} />}
+            isOpen={isDeleteModalOpen}
+            toggleModal={toggleDeleteModal}
+            title="Delete Client"
+            divClass="flex items-center justify-center min-h-screen px-4"
+            content={<DeleteCategory toggleModal={toggleDeleteModal} />}
             sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
             spaceClass="p-5 space-y-4"
           />,
           document.body
         )}
-
+      {isUpdateModalOpen &&
+        createPortal(
+          <Modal
+            isOpen={isUpdateModalOpen}
+            toggleModal={toggleUpdateModal}
+            title="Update Category"
+            divClass="flex items-center justify-center min-h-screen px-4"
+            content={<UpdateCategory toggleModal={toggleUpdateModal} />}
+            sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
+            spaceClass="p-5 space-y-4"
+          />,
+          document.body
+        )}
       <Toaster duration={12000} />
     </>
   );
