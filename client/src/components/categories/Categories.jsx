@@ -8,6 +8,7 @@ import UpdateCategory from "./UpdateCategory";
 import DeleteCategory from "./DeleteCategory";
 
 const Categories = () => {
+  
   const [categories, setCategories] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState(null);

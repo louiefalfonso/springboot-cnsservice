@@ -29,8 +29,6 @@ public class Customer {
 
 
     //Getters & Setters
-
-
     public void setId(Long id) {
         this.id = id;
     }
