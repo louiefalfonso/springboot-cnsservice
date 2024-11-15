@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import CustomerService from "../../services/CustomerService";
 
-
 const DeleteCustomer = () => {
      const { id } = useParams();
      const navigate = useNavigate();
