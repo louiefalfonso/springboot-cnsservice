@@ -65,6 +65,15 @@ const Categories = () => {
                       <td>
                         <button
                           type="button"
+                          onClick={toggleUpdateModal}
+                          className="btn py-1 px-3.5 text-xs bg-warning border border-warning rounded-md text-black transition-all duration-300 hover:bg-warning/[0.85] hover:border-warning/[0.85]"
+                        >
+                          Update
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          type="button"
                           onClick={toggleDeleteModal}
                           className="btn py-1 px-3.5 text-xs bg-danger border border-danger border-danger rounded-md text-white transition-all duration-300 hover:bg-danger/[0.85] hover:border-danger/[0.85]"
                         >
@@ -97,7 +106,7 @@ const Categories = () => {
           <Modal
             isOpen={isDeleteModalOpen}
             toggleModal={toggleDeleteModal}
-            title="Delete Client"
+            title="Delete Category"
             divClass="flex items-center justify-center min-h-screen px-4"
             content={<DeleteCategory toggleModal={toggleDeleteModal} />}
             sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"

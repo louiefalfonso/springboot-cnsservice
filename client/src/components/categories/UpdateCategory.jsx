@@ -4,6 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import CategoryService from "../../services/CategoryService";
 
 const UpdateCategory = () => {
+  
       const navigate = useNavigate();
       const params = useParams();
       const { id } = params;
