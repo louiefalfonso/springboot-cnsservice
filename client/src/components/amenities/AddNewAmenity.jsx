@@ -53,6 +53,7 @@ const AddNewAmenity = () => {
             setAmenityPrice(newAmenity.amenityPrice);
             setDescription(newAmenity.description);
             setStatus(newAmenity.status);
+            
           } catch (error) {
             console.error(error);
           }

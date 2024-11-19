@@ -72,7 +72,22 @@ const Amenities = () => {
                       <td>{amenity.amenityPrice}</td>
                       <td>{amenity.status}</td>
                       <td>{amenity.description}</td>
-                      <td></td>
+                      <td>
+                        <button
+                          type="button"
+                          onClick={() => toggleUpdateModal(amenity._id)}
+                          className="btn py-1 px-3.5 text-xs bg-warning border border-warning rounded-md text-black transition-all duration-300 hover:bg-warning/[0.85] hover:border-warning/[0.85]"
+                        >
+                          Update
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => toggleDeleteModal(amenity._id)}
+                          className="btn py-1 px-3.5 text-xs bg-danger border border-danger rounded-md text-black transition-all duration-300 hover:bg-danger/[0.85] hover:border-danger/[0.85]"
+                        >
+                          Delete
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
