@@ -17,15 +17,9 @@ const Amenities = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-  const toggleDeleteModal = () => {
-    setIsDeleteModalOpen(!isDeleteModalOpen);
-  };
-  const toggleUpdateModal = () => {
-    setIsUpdateModalOpen(!isUpdateModalOpen);
-  };
+  const toggleModal = () => { setIsModalOpen(!isModalOpen); };
+  const toggleDeleteModal = () => { setIsDeleteModalOpen(!isDeleteModalOpen); };
+  const toggleUpdateModal = () => { setIsUpdateModalOpen(!isUpdateModalOpen); };
 
   useEffect(() => {
     const fetchAmenities = async () => {
