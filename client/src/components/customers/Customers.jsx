@@ -8,6 +8,7 @@ import UpdateCustomer from "./UpdateCustomer";
 import DeleteCustomer from "./DeleteCustomer";
 
 const Customers = () => {
+  
     const [customers, setCustomers] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [error, setError] = useState(null);
@@ -68,20 +69,19 @@ const Customers = () => {
                       <td>
                         <button
                           type="button"
-                          onClick={() => toggleUpdateModal(customer._id)}
+                          onClick={() => toggleUpdateModal}
                           className="btn py-1 px-3.5 text-xs bg-info border border-info rounded-md text-black transition-all duration-300 hover:bg-info/[0.85] hover:border-info/[0.85]"
                         >
                           Update
                         </button>
                         <button
                           type="button"
-                          onClick={() => toggleDeleteModal(customer._id)}
+                          onClick={() => toggleDeleteModal}
                           className="btn py-1 px-3.5 text-xs bg-error border border-error rounded-md text-black transition-all duration-300 hover:bg-error/[0.85] hover:border-error/[0.85]"
                         >
                           Delete
                         </button>
                       </td>
- 
                     </tr>
                   ))}
                 </tbody>
@@ -90,6 +90,46 @@ const Customers = () => {
           </div>
         </div>
       </div>
+      {isModalOpen &&
+        createPortal(
+          <Modal
+            isOpen={isModalOpen}
+            toggleModal={toggleModal}
+            title="Create New Customer"
+            divClass="flex items-start justify-center min-h-screen px-4"
+            content={<AddNewCustomer toggleModal={toggleModal} />}
+            sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
+            spaceClass="p-5 space-y-4"
+          />,
+          document.body
+        )}
+      {isDeleteModalOpen &&
+        createPortal(
+          <Modal
+            isOpen={isDeleteModalOpen}
+            toggleModal={toggleDeleteModal}
+            title="Delete Customer"
+            divClass="flex items-center justify-center min-h-screen px-4"
+            content={<DeleteCustomer toggleModal={toggleDeleteModal} />}
+            sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
+            spaceClass="p-5 space-y-4"
+          />,
+          document.body
+        )}
+      {isUpdateModalOpen &&
+        createPortal(
+          <Modal
+            isOpen={isUpdateModalOpen}
+            toggleModal={toggleUpdateModal}
+            title="Update Category"
+            divClass="flex items-center justify-center min-h-screen px-4"
+            content={<UpdateCustomer toggleModal={toggleUpdateModal} />}
+            sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
+            spaceClass="p-5 space-y-4"
+          />,
+          document.body
+        )}
+      <Toaster duration={12000} />
     </>
   );
 }
