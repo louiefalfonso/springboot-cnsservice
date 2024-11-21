@@ -48,10 +48,12 @@ const UpdateCustomer = () => {
        try {
          const response = await CustomerService.getCustomerById(id);
          const update = response.data;
+
          setFirstName(update.firstName);
          setLastName(update.lastName);
          setEmail(update.email);
          setPhoneNumber(update.phoneNumber);
+         
        } catch (error) {
          console.error(error);
        }

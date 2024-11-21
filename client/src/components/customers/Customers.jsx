@@ -3,14 +3,22 @@ import Modal from "../layout/Modal";
 import { createPortal } from "react-dom";
 import { Toaster } from "react-hot-toast";
 import CustomerService from "../../services/CustomerService";
+import AddNewCustomer from "./AddNewCustomer";
+import UpdateCustomer from "./UpdateCustomer";
+import DeleteCustomer from "./DeleteCustomer";
 
 const Customers = () => {
     const [customers, setCustomers] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [error, setError] = useState(null);
 
-    const toggleModal = () => {
-      setIsModalOpen(!isModalOpen);
-    };
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+
+    const toggleModal = () => { setIsModalOpen(!isModalOpen); };
+    const toggleDeleteModal = () => { setIsDeleteModalOpen(!isDeleteModalOpen);};
+    const toggleUpdateModal = () => { setIsUpdateModalOpen(!isUpdateModalOpen);};
+
 
     useEffect(() => {
       const fetchCustomers = async () => {
@@ -57,6 +65,22 @@ const Customers = () => {
                       <td>{customer.lastName}</td>
                       <td>{customer.email}</td>
                       <td>{customer.phone}</td>
+                      <td>
+                        <button
+                          type="button"
+                          onClick={() => toggleUpdateModal(customer._id)}
+                          className="btn py-1 px-3.5 text-xs bg-info border border-info rounded-md text-black transition-all duration-300 hover:bg-info/[0.85] hover:border-info/[0.85]"
+                        >
+                          Update
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => toggleDeleteModal(customer._id)}
+                          className="btn py-1 px-3.5 text-xs bg-error border border-error rounded-md text-black transition-all duration-300 hover:bg-error/[0.85] hover:border-error/[0.85]"
+                        >
+                          Delete
+                        </button>
+                      </td>
  
                     </tr>
                   ))}
