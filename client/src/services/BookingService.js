@@ -24,17 +24,7 @@ const BookingService = {
     return axios.delete(`${API_BASE_URL}/${id}`);
   },
 
-  addNewComment(id) {
-    return axios.post(`${API_BASE_URL}/${id}/comments`, id);
-  },
-
-  getAllComments(id){
-    return axios.get(`${API_BASE_URL}/${id}/comments`, id);
-  },
-
-  getCommentsById(id) {
-    return axios.get(`${API_BASE_URL}/${id}/comments`);
-  }
+  
 };
 
 export default BookingService;
