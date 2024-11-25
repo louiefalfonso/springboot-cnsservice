@@ -1,5 +1,6 @@
 package demo.cnsservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
@@ -36,6 +37,7 @@ public class Booking {
     @Column(name = "status")
     private String status;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
@@ -98,4 +100,6 @@ public class Booking {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+
 }

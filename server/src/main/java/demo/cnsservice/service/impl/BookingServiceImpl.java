@@ -2,6 +2,7 @@ package demo.cnsservice.service.impl;
 
 import demo.cnsservice.dto.BookingDto;
 import demo.cnsservice.entity.Booking;
+import demo.cnsservice.entity.Category;
 import demo.cnsservice.repository.BookingRepository;
 import demo.cnsservice.repository.CategoryRepository;
 import demo.cnsservice.service.BookingService;
@@ -44,7 +45,6 @@ public class BookingServiceImpl implements BookingService {
         return modelMapper.map(booking, BookingDto.class);
     }
 
-
     // REST API - Update Booking
     @Override
     public BookingDto updateBooking(Long bookingId, BookingDto updateBooking) {
@@ -56,7 +56,7 @@ public class BookingServiceImpl implements BookingService {
         booking.setPrice(updateBooking.getPrice());
         booking.setStatus(updateBooking.getStatus());
         booking.setDescription(updateBooking.getDescription());
-        booking.setCategory(modelMapper.map(updateBooking.getCategoryId(), Booking.class).getCategory());
+        booking.setCategory(modelMapper.map(updateBooking.getCategory(), Category.class));
 
         Booking updateBookingObj = bookingRepository.save(booking);
         return modelMapper.map(updateBookingObj, BookingDto.class);

@@ -5,6 +5,7 @@ import demo.cnsservice.entity.Booking;
 import demo.cnsservice.repository.BookingRepository;
 import demo.cnsservice.service.BookingService;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ public class BookingController {
     @Autowired
     private BookingRepository bookingRepository;
     private BookingService bookingService;
+    private ModelMapper modelMapper;
 
     //POST New Booking REST API
     @PostMapping
@@ -44,11 +46,10 @@ public class BookingController {
         return ResponseEntity.ok(booking);
     }
 
-
     //UPDATE Booking REST API
     @PutMapping ("{id}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable("id") long id,
-                                                 @RequestBody Booking bookingDetails){
+    public ResponseEntity<BookingDto> updateBooking(@PathVariable("id") long id,
+                                                    @RequestBody Booking bookingDetails){
         Booking updateBooking = bookingRepository.findAllById(id)
                 .orElseThrow(()->new RuntimeException("Booking does not exist with id: " + id));
 
@@ -60,8 +61,10 @@ public class BookingController {
         updateBooking.setCategory(bookingDetails.getCategory());
 
         bookingRepository.save(updateBooking);
-        return ResponseEntity.ok(updateBooking);
+        BookingDto updatedBookingDto = modelMapper.map(updateBooking,BookingDto.class);
+        return ResponseEntity.ok(updatedBookingDto);
     }
+
 
     //DELETE Booking REST API
     @DeleteMapping("{id}")

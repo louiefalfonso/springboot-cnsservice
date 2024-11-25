@@ -26,7 +26,7 @@ public class BookingDto {
 
     private String status;
 
-    private Long categoryId;
+    private CategoryDto category;
 
     private Set<CommentDto> comments;
 
@@ -50,7 +50,4 @@ public class BookingDto {
         this.status = status;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
 }

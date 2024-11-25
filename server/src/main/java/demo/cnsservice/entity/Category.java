@@ -1,5 +1,6 @@
 package demo.cnsservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +27,8 @@ public class Category {
     @Column(name = "category_description")
     private String description;
 
+
+    @JsonManagedReference
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Booking> bookings;
 
@@ -36,4 +39,6 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }

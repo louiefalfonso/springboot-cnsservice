@@ -20,4 +20,11 @@ public class CategoryDto {
     public String getDescription() {
         return description;
     }
+
+
+
+    public CategoryDto(int id){
+        this.id = (long) id;
+    }
+
 }
