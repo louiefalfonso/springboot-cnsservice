@@ -47,7 +47,7 @@ public class CommentServiceImpl implements CommentService {
 
 
     // REST API - Get Comment By Id
-    @Override
+    /*@Override
     public CommentDto getCommentById(long bookingId, long commentId) {
 
         Booking booking = bookingRepository.findAllById(bookingId)
@@ -60,6 +60,16 @@ public class CommentServiceImpl implements CommentService {
             throw new BookingAPIException(HttpStatus.BAD_REQUEST,"Comment does not belongs to post");
         }
 
+        return modelMapper.map(comment, CommentDto.class);
+    }*/
+
+    @Override
+    public CommentDto getCommentById(long bookingId, long commentId) {
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow();
+        Comment comment = commentRepository.findById(commentId).orElseThrow();
+        if (!comment.getBooking().getId().equals(booking.getId())) {
+            throw new BookingAPIException(HttpStatus.BAD_REQUEST, "Comment does not belong to post");
+        }
         return modelMapper.map(comment, CommentDto.class);
     }
 
