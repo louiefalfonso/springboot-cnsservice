@@ -29,10 +29,9 @@ public class CommentServiceImpl implements CommentService {
     public CommentDto createComment(long bookingId, CommentDto commentDto) {
 
         Comment comment = modelMapper.map(commentDto, Comment.class);
-        Booking booking = bookingRepository.findById(bookingId)
-                .orElseThrow(()->new ResourceNotFoundException("Booking", "id", bookingId));
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow();
+        comment.setBooking(booking);
 
-        comment.setComment(comment);
         Comment savedComment = commentRepository.save(comment);
         return  modelMapper.map(savedComment, CommentDto.class);
 

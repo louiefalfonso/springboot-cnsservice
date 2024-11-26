@@ -27,7 +27,6 @@ public class Category {
     @Column(name = "category_description")
     private String description;
 
-
     @JsonManagedReference
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Booking> bookings;

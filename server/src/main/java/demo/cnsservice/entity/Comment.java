@@ -31,6 +31,7 @@ public class Comment {
     @JoinColumn(name = "booking_id", nullable = false)
     private Booking booking;
 
+
     public void setComment(Comment comment) {
     }
 }
