@@ -4,7 +4,6 @@ import demo.cnsservice.dto.CommentDto;
 import demo.cnsservice.entity.Booking;
 import demo.cnsservice.entity.Comment;
 import demo.cnsservice.exception.BookingAPIException;
-import demo.cnsservice.exception.ResourceNotFoundException;
 import demo.cnsservice.repository.BookingRepository;
 import demo.cnsservice.repository.CommentRepository;
 import demo.cnsservice.service.CommentService;
@@ -46,27 +45,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
 
-    // REST API - Get Comment By Id
-    /*@Override
-    public CommentDto getCommentById(long bookingId, long commentId) {
-
-        Booking booking = bookingRepository.findAllById(bookingId)
-                .orElseThrow(()-> new ResourceNotFoundException("Booking", "id", bookingId));
-
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(()-> new ResourceNotFoundException("Comment", "id", commentId));
-
-        if(!comment.getBooking().getId().equals(booking.getId())){
-            throw new BookingAPIException(HttpStatus.BAD_REQUEST,"Comment does not belongs to post");
-        }
-
-        return modelMapper.map(comment, CommentDto.class);
-    }*/
-
+    // REST API - Get Comments By Id
     @Override
     public CommentDto getCommentById(long bookingId, long commentId) {
+
         Booking booking = bookingRepository.findById(bookingId).orElseThrow();
         Comment comment = commentRepository.findById(commentId).orElseThrow();
+
         if (!comment.getBooking().getId().equals(booking.getId())) {
             throw new BookingAPIException(HttpStatus.BAD_REQUEST, "Comment does not belong to post");
         }
@@ -76,18 +61,14 @@ public class CommentServiceImpl implements CommentService {
 
     // REST API - Delete Comment
     @Override
-    public void deleteComment(Long bookingId, Long commentId) {
+    public void deleteComment(long bookingId, long commentId) {
 
-        Booking booking = bookingRepository.findById(bookingId)
-                .orElseThrow(()-> new ResourceNotFoundException("Booking", "id", bookingId));
-
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(()-> new ResourceNotFoundException("Comment", "id", commentId));
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow();
+        Comment comment = commentRepository.findById(commentId).orElseThrow();
 
         if(!comment.getBooking().getId().equals(booking.getId())){
             throw new BookingAPIException(HttpStatus.BAD_REQUEST,"Comment does not belongs to post");
         }
-
         commentRepository.deleteById(commentId);
 
     }
@@ -96,11 +77,8 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public CommentDto updateComment(Long bookingId, Long commentId, CommentDto commentRequest) {
 
-        Booking booking = bookingRepository.findById(bookingId)
-                .orElseThrow(()-> new ResourceNotFoundException("Booking", "id", bookingId));
-
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(()-> new ResourceNotFoundException("Comment", "id", commentId));
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow();
+        Comment comment = commentRepository.findById(commentId).orElseThrow();
 
         if(!comment.getBooking().getId().equals(booking.getId())){
             throw new BookingAPIException(HttpStatus.BAD_REQUEST,"Comment does not belongs to post");

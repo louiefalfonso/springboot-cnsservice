@@ -35,7 +35,6 @@ public class CommentController {
         return commentService.getCommentsByBookingId(bookingId);
     }
 
-
     //GET Comment By Id REST API
     @GetMapping("/bookings/{bookingId}/comments/{id}")
     public ResponseEntity<CommentDto> getCommentById(@PathVariable(value = "bookingId") Long bookingId,
@@ -59,6 +58,6 @@ public class CommentController {
     public ResponseEntity<String> deleteComment(@PathVariable(value = "bookingId") Long bookingId,
                                                 @PathVariable(value = "id") Long commentId){
         commentService.deleteComment(bookingId, commentId);
-        return new ResponseEntity<>("Comment deleted successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Comment Deleted successfully", HttpStatus.OK);
     }
 }
