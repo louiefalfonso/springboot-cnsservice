@@ -53,7 +53,7 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentRepository.findById(commentId).orElseThrow();
 
         if (!comment.getBooking().getId().equals(booking.getId())) {
-            throw new BookingAPIException(HttpStatus.BAD_REQUEST, "Comment does not belong to post");
+            throw new BookingAPIException(HttpStatus.BAD_REQUEST, "Comment does not belong to this Booking");
         }
         return modelMapper.map(comment, CommentDto.class);
     }
@@ -67,7 +67,7 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentRepository.findById(commentId).orElseThrow();
 
         if(!comment.getBooking().getId().equals(booking.getId())){
-            throw new BookingAPIException(HttpStatus.BAD_REQUEST,"Comment does not belongs to post");
+            throw new BookingAPIException(HttpStatus.BAD_REQUEST,"Comment does not belongs to this Booking");
         }
         commentRepository.deleteById(commentId);
 
@@ -81,7 +81,7 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentRepository.findById(commentId).orElseThrow();
 
         if(!comment.getBooking().getId().equals(booking.getId())){
-            throw new BookingAPIException(HttpStatus.BAD_REQUEST,"Comment does not belongs to post");
+            throw new BookingAPIException(HttpStatus.BAD_REQUEST,"Comment does not belongs this Booking");
         }
 
         comment.setName(commentRequest.getName());

@@ -16,6 +16,11 @@ const CommentService = {
   getCommentsById(id) {
     return axios.get(`${API_BASE_URL}/${id}/comments`);
   },
+
+  deleteComment(id) {
+    return axios.delete(`${API_BASE_URL}/${id}/comments`);
+  }
+  
 };
 
 export default CommentService
