@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import CommentService from "../../services/CommentService";
+import BookingService from "../../services/BookingService";
 
 const AddNewComment = () => {
 
@@ -10,6 +11,7 @@ const AddNewComment = () => {
     const { id } = params;
 
     const [commentId, setCommentId] = useState("");
+    const [bookingId, setBookingId] = useState("");
     const [commentName, setCommentName] = useState("");
     const [commentEmail, setCommentEmail] = useState("");
     const [commentBody, setCommentBody] = useState("");
