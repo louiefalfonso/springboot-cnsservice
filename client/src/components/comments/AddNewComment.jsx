@@ -67,7 +67,31 @@ const AddNewComment = () => {
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-1">
-        <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder"></div>
+        <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder">
+          <form
+            onSubmit={handleSubmit}
+            onClick={(e) => e.stopPropagation()}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+          >
+            <div className="sm:col-span-1">
+              <label
+                htmlFor="commentName"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Name:
+              </label>
+              <input
+                placeholder="Name"
+                required
+                type="text"
+                className="form-input"
+                id="commentName"
+                value={commentName}
+                onChange={(e) => setCommentName(e.target.value)}
+              />
+            </div>
+          </form>
+        </div>
       </div>
       <Toaster duration={12000} />
     </>
