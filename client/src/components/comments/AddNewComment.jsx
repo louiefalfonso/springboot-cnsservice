@@ -90,6 +90,49 @@ const AddNewComment = () => {
                 onChange={(e) => setCommentName(e.target.value)}
               />
             </div>
+            <div className="sm:col-span-1">
+              <label
+                htmlFor="commentEmail"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Email:
+              </label>
+              <input
+                placeholder="Email"
+                required
+                type="email"
+                className="form-input"
+                id="commentEmail"
+                value={commentEmail}
+                onChange={(e) => setCommentEmail(e.target.value)}
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <label
+                htmlFor="commentBody"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Comment Body:
+              </label>
+              <textarea
+                placeholder="Comment Details"
+                required
+                type="text"
+                className="form-input"
+                id="commentBody"
+                value={commentBody}
+                onChange={(e) => setCommentBody(e.target.value)}
+                style={{ height: "100px" }}
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <button
+                type="submit"
+                className="btn w-full py-2 px-4 text-lg bg-warning border border-warning rounded-md text-black transition-all duration-300 hover:bg-warning/[0.85] hover:border-warning/[0.85]"
+              >
+                Create New Comment
+              </button>
+            </div>
           </form>
         </div>
       </div>

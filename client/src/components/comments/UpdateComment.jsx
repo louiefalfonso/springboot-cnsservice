@@ -34,7 +34,7 @@ const UpdateComment = () => {
 
     CommentService.updateComment(id, currentComment)
       .then((response) => {
-        navigate("/comments");
+        navigate("/bookings");
       })
       .catch((error) => {
         setError(error);
@@ -60,7 +60,7 @@ const UpdateComment = () => {
 
 
   return (
-    <div>UpdateComment</div>
+    <>UpdateComment</>
   )
 }
 
